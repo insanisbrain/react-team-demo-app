@@ -2,24 +2,76 @@ import React, { useState } from 'react'
 
 
 const Login = () => {
-    const [userResistration, setuserResgistration]=useState({
-        username:'',
-        passward:'',
-        email:'',
-        phone:'',
-        education:'',
-        hobies:''
+    const [userResistration, setuserResgistration]=useState([{
+        // username:'',
+        // passward:'',
+        // email:'',
+        // phone:'',
+        // education:'',
+        // hobies:''
+        username: {
+            value: '',
+            errorMessage: '',
+          },
+          email: {
+            value: '',
+            errorMessage: '',
+          },
+          password: {
+            value: '',
+            errorMessage: '',
+          }
        
-    });
+    }]);
+
+
+    const handleChange= (e) => {
+        const { name, value } = e.target;
+    
+        switch (name) {
+          case "username":
+            setuserResgistration({
+              ...userResistration,
+              username: {
+                value, // if object key left side & passing object right side are same then use that key once
+                errorMessage: value.length < 4 ? "Atlease 4 character required" : ""
+              }
+            })
+            break;
+        //   case "email":
+        //     setuserResgistration({
+        //       ...userResistration, // capture older state of formData
+        //       email: {
+        //         value, // if object key left side & passing object right side are same then use that key once
+        //         errorMessage: regExp.test(value) ? "" : "Email address is invalid"
+        //       }
+        //     })
+        //     break;
+          case "password":
+            setuserResgistration({
+              ...userResistration,
+              password: {
+                value, // if object key left side & passing object right side are same then use that key once
+                errorMessage: value.length < 6 ? 'Atlease 6 character required' : ""
+              }
+            })
+            break;
+          default:
+            break;
+        }
+    
+      }
+
+    
     // const [record, setrecord] = useState([]);
-     const handleChange=(e)=>{
+    /* const handleChange=(e)=>{
          const name=e.target.name;
          const value=e.target.value;
          console.log(name,value);   
 
          setuserResgistration({...userResistration, [name]:value})
      }
-
+    */
      /*const handleSubmit=(e)=>{
          e.preventDefault();
          const newRecord={...userResistration, id: new Date().getTime().toString()};
@@ -33,9 +85,15 @@ const Login = () => {
 
         <div>
             <label htmlFor='username'>Full Name</label>
-            <input type='text' value={userResistration.username} onChange={handleChange} autoComplete='off' name='username' id='username'/>
+            <input type='text' onChange={handleChange} autoComplete='off' name='username' id='username'/>
+            {
+              userResistration.username.errorMessage.length > 0 && (
+                <small>{userResistration.username.errorMessage}</small>
+              )
+            }
         </div>
-        <div>
+        
+        {/* <div>
             <label htmlFor='email'>Email</label>
             <input type='text' value={userResistration.email}  onChange={handleChange} name='email' id='email'/>
         </div> <div>
@@ -72,12 +130,13 @@ const Login = () => {
                 <option value='M.Tech'>M.Tech</option>
 
             </select>
-        </div>
+        </div> */}
+
 
         <button type='submit'> Resistration</button>
 
     </form>
-    <div>
+    {/* <div>
     <br></br>
       First Name: {userResistration.username}
       <br></br>
@@ -88,8 +147,8 @@ const Login = () => {
       Hobbies:{handleChange}
       <br></br>
       Education:{userResistration.education}
-    </div>
-
+    </div> */}
+ 
     </>
   )
 }
