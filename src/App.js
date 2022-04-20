@@ -4,6 +4,7 @@ import Counter from './components/Counter';
 import Employee from './components/Employee';
 import Products from './components/Products';
 import { FormValidation } from './components/FormValidation';
+import LoginForm from './components/LoginForm';
 
 function App() {
   return (
@@ -11,8 +12,9 @@ function App() {
       {/* <Counter /> */}
       {/* <Employee /> */}
       {/* <Products /> */}
-      <FormValidation />
-    </div>
+      {/* <FormValidation /> */}
+      <LoginForm/>
+    </div> 
   );
 }
 
